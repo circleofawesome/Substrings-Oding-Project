@@ -1,12 +1,20 @@
-arr=["below","low","blow"]
-word="below"
-num=0
+dictionary=["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 
-arr.each do |i|
-	if word[i]!=nil
-		num+=1
+def substrings(sentence,words=[])
+	sentence=sentence.downcase.gsub(/[^a-z\s]/,'').split
+	frequency=Hash.new
+	words.each do |i|
+		frequency[i]=0
 	end
-end
-puts num
 
-#this works, finds substrings and returns the number of times the word appears
+	sentence.each do |i|
+		words.each do |w|
+			if i[w]!=nil
+				frequency[i]=frequency[i]+1
+			end
+		end
+	end
+	return frequency
+end
+
+substrings("below",dictionary)
